@@ -12,10 +12,12 @@ public class IKFootSolver : MonoBehaviour
     [SerializeField] float stepLength = 4;
     [SerializeField] float stepHeight = 1;
     [SerializeField] Vector3 footOffset = default;
+    [SerializeField] float distance = 0;
     Vector3 shoulderOffset;
     Vector3 oldPosition, currentPosition, newPosition;
     Vector3 oldNormal, currentNormal, newNormal;
     float lerp;
+    Vector3 hitpoint;
 
     private void Start()
     {
@@ -32,40 +34,43 @@ public class IKFootSolver : MonoBehaviour
     {
         transform.position = currentPosition;
         transform.up = currentNormal;
-        
         if (lerp < 1)
         {
             Vector3 tempPosition = Vector3.Lerp(oldPosition, newPosition, lerp);
-            //tempPosition.y += Mathf.Sin(lerp * Mathf.PI) * stepHeight;
-            transform.position = tempPosition;
-            transform.up = Vector3.Lerp(oldNormal, newNormal, lerp);
+            tempPosition.y += Mathf.Sin(lerp * Mathf.PI) * stepHeight;
+            currentPosition = tempPosition;
+            currentNormal = Vector3.Lerp(oldNormal, newNormal, lerp);
             lerp += Time.deltaTime * speed;
+
             return;
         }
 
         Ray ray = new Ray(body.position + shoulderOffset, Vector3.down);
         bool hit = Physics.Raycast(ray, out RaycastHit info, 10, terrainLayer.value);
-        if (hit && Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving()){
+        hitpoint = info.point;
+        distance = Vector3.Distance(transform.position, info.point);
+        if (hit &&  distance > stepDistance && !otherFoot.IsMoving())
+        {
+            //int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(transform.position).z ? 1 : -1;
+            newPosition = newPosition + (info.point - newPosition)*stepLength + footOffset;
+            newNormal = info.normal;
+            //lerp = 0;
             oldPosition = transform.position;
             oldNormal = transform.up;
-            lerp = 0;}{
-            int direction = body.InverseTransformPoint(info.point).z > body.InverseTransformPoint(transform.position).z ? 1 : -1;
-            newPosition = info.point + (Vector3.forward * stepLength * direction) + footOffset;
-            newNormal = info.normal;
-        } 
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(newPosition, 0.1f);
-        Gizmos.DrawRay(body.position+shoulderOffset, Vector3.down);
+        Gizmos.DrawSphere(hitpoint, 0.1f);
+        Gizmos.DrawRay(body.position + shoulderOffset, Vector3.down);
     }
 
 
 
     public bool IsMoving()
     {
-        return false;//return lerp < 1;
+        return lerp < 1;
     }
 }
