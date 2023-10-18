@@ -32,8 +32,8 @@ public class IKFootSolver : MonoBehaviour
 
     void Update()
     {
-        transform.position = currentPosition;
-        transform.up = currentNormal;
+        //transform.position = currentPosition;
+        //transform.up = currentNormal;
         if (lerp < 1)
         {
             Vector3 tempPosition = Vector3.Lerp(oldPosition, newPosition, lerp);
