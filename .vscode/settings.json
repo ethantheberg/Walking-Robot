@@ -55,7 +55,7 @@
         "temp/": false,
         "Temp/": false
     },
-    "dotnet.defaultSolution": "Walking Robot.sln",
+    "dotnet.defaultSolution": "Walking-Robot.sln",
     "git.ignoreLimitWarning": true,
     "explorerExclude.backup": {}
 }
