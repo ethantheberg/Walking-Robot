@@ -70,8 +70,8 @@ public class IKFootSolver : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(hitpoint, 0.1f);
-        Gizmos.DrawRay(ray);
+        //Gizmos.DrawSphere(hitpoint, 0.1f);
+        //Gizmos.DrawRay(ray);
     }
 
 
