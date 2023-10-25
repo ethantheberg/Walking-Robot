@@ -16,6 +16,8 @@ public class Controller : MonoBehaviour
     float currentAngle;
     float angleVelocity;
     Vector2 direction;
+    bool scanning = false;
+    Vector3 scanDirection;
 
     void Start()
     {
@@ -36,7 +38,15 @@ public class Controller : MonoBehaviour
             ++progress;
             progress %= waypoints.Length;
         }
-        direction = To2d(waypoints[progress].position - transform.position).normalized;
+        
+        if (scanning)
+        {
+            direction = To2d(scanDirection);
+        }
+        else
+        {
+            direction = To2d(waypoints[progress].position - transform.position).normalized;
+        }
 
         targetAngle = -Vector2.SignedAngle(Vector2.left, direction);
         currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref angleVelocity, 0.5f);
@@ -49,9 +59,13 @@ public class Controller : MonoBehaviour
             error -= 360.0f;
         }
         Debug.Log(error);
-        transform.position += speed * Time.deltaTime * To3d(direction);// * Damp(error);
+        if (!scanning) transform.position += speed * Time.deltaTime * To3d(direction);// * Damp(error);
 
+        if(scanning){
+            
+        }
         //transform.position += speed * Time.deltaTime * Vector3.forward;
+
     }
 
     private float Damp(float value)
