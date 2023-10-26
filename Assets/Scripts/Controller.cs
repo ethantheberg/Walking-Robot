@@ -17,18 +17,36 @@ public class Controller : MonoBehaviour
     float angleVelocity;
     Vector2 direction;
     bool scanning = false;
-    Vector3 scanDirection;
+    Vector2 scanDirection;
+    [SerializeField] LaserController laserController1;
+    [SerializeField] LaserController laserController2;
 
     void Start()
     {
-        Ray ray = new Ray(transform.position, -transform.forward);
+        Ray ray = new Ray(transform.position, -transform.up);
         Physics.Raycast(ray, out RaycastHit info, 10, terrainLayer.value);
         currentNormal = info.normal;
+        StopScan();
+    }
+
+    public void StartScan(Vector2 direction)
+    {
+        scanning = true;
+        scanDirection = direction;
+        laserController1.enable();
+        laserController2.enable();
+    }
+
+    public void StopScan()
+    {
+        scanning = false;
+        laserController1.disable();
+        laserController2.disable();
     }
 
     void Update()
     {
-        Ray ray = new Ray(transform.position, -transform.forward);
+        Ray ray = new Ray(transform.position, -transform.up);
         if (!Physics.Raycast(ray, out RaycastHit info, 10, terrainLayer.value)) return;
 
         UpdateNormal(info);
@@ -37,8 +55,9 @@ public class Controller : MonoBehaviour
         {
             ++progress;
             progress %= waypoints.Length;
+            StartScan(Vector2.left);
         }
-        
+
         if (scanning)
         {
             direction = To2d(scanDirection);
@@ -51,26 +70,16 @@ public class Controller : MonoBehaviour
         targetAngle = -Vector2.SignedAngle(Vector2.left, direction);
         currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref angleVelocity, 0.5f);
 
-        transform.Rotate(0, 0, currentAngle);
+        transform.Rotate(0, currentAngle, 0);
+        if (!scanning) transform.position += speed * Time.deltaTime * To3d(direction);
 
-        float error = Mathf.Abs(currentAngle - targetAngle);
-        if (error > 180.0f)
+        if (scanning)
         {
-            error -= 360.0f;
-        }
-        Debug.Log(error);
-        if (!scanning) transform.position += speed * Time.deltaTime * To3d(direction);// * Damp(error);
-
-        if(scanning){
-            
+            laserController1.Scan();
+            laserController2.Scan();
         }
         //transform.position += speed * Time.deltaTime * Vector3.forward;
 
-    }
-
-    private float Damp(float value)
-    {
-        return 1 / (1 + Mathf.Exp(5 * (value - 1)));
     }
 
     private void UpdateNormal(RaycastHit info)
@@ -78,10 +87,10 @@ public class Controller : MonoBehaviour
         currentNormal.x = Mathf.SmoothDamp(currentNormal.x, info.normal.x, ref normalVelocity.x, 0.5f);
         currentNormal.y = Mathf.SmoothDamp(currentNormal.y, info.normal.y, ref normalVelocity.y, 0.5f);
         currentNormal.z = Mathf.SmoothDamp(currentNormal.z, info.normal.z, ref normalVelocity.z, 0.5f);
-        transform.forward = currentNormal;
-        transform.position = info.point + transform.forward * height;
+        transform.up = currentNormal;
+        transform.position = info.point + transform.up * height;
 
-        transform.Rotate(0, 0, -Vector2.SignedAngle(To2d(transform.up).normalized, Vector2.left));
+        transform.Rotate(0, Vector2.SignedAngle(To2d(transform.forward).normalized, Vector2.left), 0);
     }
 
     Vector2 To2d(Vector3 input)
@@ -92,10 +101,5 @@ public class Controller : MonoBehaviour
     Vector3 To3d(Vector2 input)
     {
         return new Vector3(input.x, 0, input.y);
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
     }
 }
