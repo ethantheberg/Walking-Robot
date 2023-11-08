@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RTxOQ7tM8PTgZ9W/pwIs1VF+kzCkStWF7RZDuMxCQ6NlNLvDWoXg0by96QIfeyVRVn2QAEchzDlo+GYwC37Pnw==",
+  "dgSpecHash": "3KlWKTif9axz5jHq6P5iyaPk1SN8KO6WD76hsdEEPtu3DeQlzMpnJlvKhJzblDW2umq/5NEI4HOfqiOEKIWvSg==",
   "success": true,
-  "projectFilePath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Assembly-CSharp.csproj",
+  "projectFilePath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Assembly-CSharp-Editor.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

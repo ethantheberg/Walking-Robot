@@ -51,13 +51,25 @@ public class Controller : MonoBehaviour
 
         UpdateNormal(info);
 
+        if (scanning)
+        {
+            laserController1.Scan();
+            laserController2.Scan();
+        }
+
         if (Vector2.Distance(To2d(waypoints[progress].position), To2d(transform.position)) < 0.5)
         {
             ++progress;
             progress %= waypoints.Length;
             StartScan(Vector2.left);
+            return;
         }
+        
+        Move();
+    }
 
+    private void Move()
+    {
         if (scanning)
         {
             direction = To2d(scanDirection);
@@ -73,13 +85,7 @@ public class Controller : MonoBehaviour
         transform.Rotate(0, currentAngle, 0);
         if (!scanning) transform.position += speed * Time.deltaTime * To3d(direction);
 
-        if (scanning)
-        {
-            laserController1.Scan();
-            laserController2.Scan();
-        }
         //transform.position += speed * Time.deltaTime * Vector3.forward;
-
     }
 
     private void UpdateNormal(RaycastHit info)

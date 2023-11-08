@@ -1,0 +1,160 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.Editor.csproj": {}
+  },
+  "projects": {
+    "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.csproj",
+        "projectName": "Oculus.Interaction",
+        "projectPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.csproj",
+        "packagesPath": "/Users/ethanberg/.nuget/packages/",
+        "outputPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ethanberg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.VR.csproj": {
+                "projectPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.VR.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.Editor.csproj",
+        "projectName": "Oculus.Interaction.Editor",
+        "projectPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.Editor.csproj",
+        "packagesPath": "/Users/ethanberg/.nuget/packages/",
+        "outputPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ethanberg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.csproj": {
+                "projectPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.Interaction.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.VR.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.VR.csproj",
+        "projectName": "Oculus.VR",
+        "projectPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/Oculus.VR.csproj",
+        "packagesPath": "/Users/ethanberg/.nuget/packages/",
+        "outputPath": "/Users/ethanberg/Documents/GitHub/Walking-Robot/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/ethanberg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.402/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
